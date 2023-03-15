@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+if ($argv[1] == 'serve') {
+    // Use the built-in web server to start the server
+    $command = sprintf('php -S %s:%d', 'localhost', $argv[2] ?? 8000);
+    // Execute the command and display the output
+    system($command);
+} else {
+    // Show a help message
+    echo "Usage: php phi serve\n";
+}

@@ -1,0 +1,125 @@
+RewriteEngine On
+ServerSignature Off
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ ./index.php [QSA,L]
+Options All -Indexes
+ErrorDocument 400 /view/err/400.php
+ErrorDocument 401 /view/err/401.php
+ErrorDocument 403 /view/err/403.php
+ErrorDocument 404 /view/err/404.php
+ErrorDocument 408 /view/err/408.php
+ErrorDocument 414 /view/err/414.php
+ErrorDocument 429 /view/err/429.php
+ErrorDocument 500 /view/err/500.php
+ErrorDocument 502 /view/err/502.php
+ErrorDocument 503 /view/err/503.php
+ErrorDocument 504 /view/err/504.php
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+php_value memory_limit 256M
+php_value post_max_size 256M
+php_value upload_max_filesize 64M
+php_value max_input_vars 1800
+php_value max_execution_time 300
+php_value max_input_time 300
+
+<FilesMatch \.(phps|php2|php3|php4|php5|phtml|pl|py|jsp|asp|htm|html|shtml|sh|cgi)$>
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+    Allow from localhost
+</Files>
+
+<Files *.log>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files dl.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 400.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 401.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 403.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 404.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 408.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 500.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 502.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 503.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files 504.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+        Header always set X-Frame-Options "DENY" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+        Header always set X-Content-Type-Options "nosniff"
+        Header unset X-Powered-By
+        Header always unset X-Powered-By
+        <FilesMatch "\.(jpe?g|png|webp|bmp|gif|ico)$">
+            SetEnvIf Origin ":" IS_CORS
+            Header set Access-Control-Allow-Origin "*" env=*IS_CORS*
+        </FilesMatch>
+    </IfModule>
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresDefault "access plus 1 day"
+    ExpiresByType text/html "access plus 1 day"
+    ExpiresByType text/javascript "access plus 1 day"
+    ExpiresByType text/css "access plus 1 day"
+</IfModule>
+
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+
