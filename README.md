@@ -8,7 +8,7 @@ phphub: where the galaxy meets PHP.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
-empty for test
+composer require thephibonacci/phphub
 ```
 
 ## License
