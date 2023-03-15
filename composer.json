@@ -1,6 +1,7 @@
 {
   "name": "thephibonacci/phphub",
   "description": "phphub: where the galaxy meets PHP.",
+  "version": "1.0.1",
   "type": "project",
   "license": "MIT",
   "authors": [
