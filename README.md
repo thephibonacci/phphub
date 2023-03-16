@@ -6,7 +6,7 @@ phphub: where the galaxy meets PHP.
 ## Installation
 
 ```bash
-composer require thephibonacci/phphub
+composer create-project thephibonacci/phphub
 ```
 
 ## License
