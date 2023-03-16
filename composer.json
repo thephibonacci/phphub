@@ -28,6 +28,12 @@
   "extra": {
     "installer-paths": {
       "app/": ["thephibonacci/phphub"]
-    }
+    },
+    "post-create-project-cmd": [
+      "cd phphub",
+      "mv * ../",
+      "cd ../",
+      "rmdir phphub"
+    ]
   }
 }
